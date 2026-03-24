@@ -1,26 +1,27 @@
 pipeline {
   agent any
-  stages {
-    stage('build') {
-      steps {
-        sh 'mvn compile'
-      }
-    }
 
-    stage('test') {
-      steps {
-        sh 'mvn clean test'
-      }
-    }
-
-    stage('package') {
-      steps {
-        sh 'package -DskipTests'
-      }
-    }
-
-  }
   tools {
     maven 'Maven 3.9.14'
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn clean compile'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        sh 'mvn package -DskipTests'
+      }
+    }
   }
 }
