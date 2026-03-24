@@ -1,10 +1,5 @@
 pipeline {
   agent any
-
-  tools {
-    maven 'Maven 3.9.14'
-  }
-
   stages {
     stage('Build') {
       steps {
@@ -23,5 +18,9 @@ pipeline {
         sh 'mvn package -DskipTests'
       }
     }
+
+  }
+  tools {
+    maven 'Maven 3.9.14'
   }
 }
