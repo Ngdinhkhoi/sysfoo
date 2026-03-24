@@ -1,37 +1,26 @@
-/*
-P
-A
-T
-SSS
-P
-*/
-pipeline{
+pipeline {
   agent any
-  tools{
-    maven 'Maven 3.9.14'
-  }
-  stages{
-    stage('build'){
-      steps{
+  stages {
+    stage('build') {
+      steps {
         sh 'mvn compile'
-        
       }
     }
-    
-    stage('test'){
-        steps{
-          sh 'mvn clean test'
-          
-        }
+
+    stage('test') {
+      steps {
+        sh 'mvn clean test'
       }
-    
-    stage('package'){
-        steps{
-          sh 'package -DskipTests'
-          
-        }
+    }
+
+    stage('package') {
+      steps {
+        sh 'package -DskipTests'
       }
-    
+    }
+
   }
-  
+  tools {
+    maven 'Maven 3.9.14'
+  }
 }
